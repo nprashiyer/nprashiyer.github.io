@@ -85,6 +85,87 @@ pool:
 
 With GH Actions, we currently do not have a usecase for self-hosted runners. We basically buold docker image with all the necessary tooling for the platform team (AWS CLI, TF, TFLINT, TFDOCS, KUBECTL, KUSTOMIZE, YQ) and publish to GH packgaes. Within the pipeline, we use the `image` attribute, on the GH runners to get the software applications we need.
 
+### Templates
+Templates let you define reusable content, logic, and parameters in YAML pipelines. Templates can help you speed up development. For example, you can have a series of the same tasks in a template and then include the template multiple times in different stages of your YAML pipeline.
+
+There are two types of templates: includes and extends.
+
+```
+# File: templates/include-npm-steps.yml
+
+steps:
+- script: npm install
+- script: yarn install
+- script: npm run compile
+
+
+# File: azure-pipelines.yml
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - template: templates/include-npm-steps.yml  # Template reference
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - template: templates/include-npm-steps.yml  # Template reference
+```
+
+Job Reuse
+```
+jobs:
+- template: templates/jobs.yml  # Template reference
+```
+
+Stage Reuse:
+```
+# File: azure-pipelines.yml
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Install
+  jobs: 
+  - job: npminstall
+    steps:
+    - task: Npm@1
+      inputs:
+        command: 'install'
+- template: templates/stages1.yml # Template reference
+- template: templates/stages2.yml # Template reference
+```
+
+We can re-use templates from other repo using resources section:
+```
+resources:
+  repositories:
+  - repository: templates
+    name: Contoso/BuildTemplates
+    endpoint: myServiceConnection # Azure DevOps service connection
+jobs:
+- template: common.yml@templates
+```
+
+### Others
+Pipeline variables are values that can be set and modified during a pipeline run. Unlike pipeline parameters, which are defined at the pipeline level and cannot be changed during a pipeline run, pipeline variables can be set and modified within a pipeline using a Set Variable activity
+
+Directories in ADO:
+<br>
+/ - Agent.WorkFolder --> This is the working director for agent
+<br>
+/1 - Agent.BuildDirectory --> This is the working director for agent - Dowloaded Artifacts Are placed here
+<br>
+/1/s - Build.SourcesDirectory | System.DefaultWorkingDirectory -> Source directory. This is where your source code is store
+<br>
+/1/a - Build.ArtifactStagingDirectory - The publish build artifacts task creates an artifact of whatever is in this folder.
+<br>
+/1/b - The output folder for compiled binaries. - Build.BinariesDirectory
+
 ### TOOLS
 **SCA - Software Composition Analysis** - Open Source vulnerabilities - We use Snyk in our pipelines. It also serves as an additional IaC scanner. Basically, we have a partnership going with Snyk, so they dont charge us. Mend/Whitesource alternative.
 
