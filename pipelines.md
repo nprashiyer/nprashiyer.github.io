@@ -179,3 +179,10 @@ CheckMarx, on the other hand, just analyzes the flow of the code and the inputs 
 
 Personally I have also worked with Prisma Cloud - Provides IaC Scanning capabilities - SCA - Opensource from Dockerfile, or packages.json or requirements.txt. 
 And runtime security in Kubernetes and WebApps(docker based) by installing Twistlock agent, which monitors activities inside the pod/container. We can also set rules to control what can be run inside the container like spawning shell, or predefined rules for cryptp-mining etc.
+
+
+Job Types - 
+Job - checkout 
+Deployemnt - get from artifact - faster
+
+environemnt - create k8s environment with namespace
