@@ -1,0 +1,20 @@
+My Name is
+CUrrent Im working as ...
+I have oer 10 yrs of exp, last 5 yrs in cloud with hands on epxosure to Azure & AWS, DevSecOps, Automation
+Started my carrer at EY & worked across multiple teams udinr gmy tenure
+- Part of CLoud Support- -
+- Cloud eng00 - for managing platform at ET - Jp - using ARM templates for deply, PS for managing vai runbooks- deomc etc
+- integrated into CT , where we were [art of CTPE Sandbxox..so very well wersed with CT strucutre/way f working
+- My last teams was STS - the team that owned Aquasec, all AKS in EY for governnce/complaince
+
+
+Accenture - worked with various cutomer short term projc
+1 - Partnerd with MS & HS i- resposible for platform automation - Terraform/ARM modules - netwokring, storage, keyvault, webapps, log analytics, eventhub -  - deploy infra using Azure pipeline, TF workspace management using pipeline, module testng with terratest, az policies, powershell for a TF workdpace backup/restrore
+2- luxury fashuon ra- mainly into deploying infra/apps - Modules & most pipeline were already set - deploy infra - VMs for Kafka + AKS for MS - deploying to AKS using pipelines
+3 - multinational retailer - mainly for cloud securty  - implemented IaC scanning using Prisma/brgde - got repos/and added to pipelines - Twistlock for runtime sec
+
+
+Deloiette - GitOps focusses team - buld from scratch - modules & templates - migreated to GH - developed pipelines using GH Actions whihc we use now - Greenfield - number of best pratcises
+PR checks - 
+SKA - standard core-apps on kubernetes - extenal-ecret - metric- external-dns - cert-manerg - argocd-argocd
+Worked on a helm chart to have this deploted with a combination of kustomize which installs argocd & then installs apps-of-apps
